@@ -31,4 +31,10 @@ class DonorController extends Controller
         $donors = Donor::orderBy('id', 'DESC')->with('blood', 'location')->limit(8)->get();
         return view('admin.donor_dashboard', compact('pageTitle', 'don', 'blood', 'city', 'locations', 'ads', 'donors'));
     }
+    public function profile()
+    {
+        $pageTitle = 'Profile';
+        $admin = Auth::guard('donor')->user();
+        return view('admin.profile', compact('pageTitle', 'admin'));
+    }
 }

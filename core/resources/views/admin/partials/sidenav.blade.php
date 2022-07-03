@@ -3,13 +3,21 @@
     <button class="res-sidebar-close-btn"><i class="las la-times"></i></button>
     <div class="sidebar__inner">
         <div class="sidebar__logo">
-            <a href="{{route('admin.dashboard')}}" class="sidebar__main-logo"><img
-                    src="{{getImage(imagePath()['logoIcon']['path'] .'/logo.png')}}" alt="@lang('image')"></a>
-            <a href="{{route('admin.dashboard')}}" class="sidebar__logo-shape"><img
-                    src="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" alt="@lang('image')"></a>
-            <button type="button" class="navbar__expand"></button>
+            @if(auth()->guard('admin')->check())
+                <a href="{{route('admin.dashboard')}}" class="sidebar__main-logo"><img
+                        src="{{getImage(imagePath()['logoIcon']['path'] .'/logo.png')}}" alt="@lang('image')"></a>
+                <a href="{{route('admin.dashboard')}}" class="sidebar__logo-shape"><img
+                        src="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" alt="@lang('image')"></a>
+                <button type="button" class="navbar__expand"></button>
+            @elseif (auth()->guard('donor')->check())
+                <a href="{{route('donor.dashboard')}}" class="sidebar__main-logo"><img
+                        src="{{getImage(imagePath()['logoIcon']['path'] .'/logo.png')}}" alt="@lang('image')"></a>
+                <a href="{{route('donor.dashboard')}}" class="sidebar__logo-shape"><img
+                        src="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" alt="@lang('image')"></a>
+                <button type="button" class="navbar__expand"></button>
+            @endif
         </div>
-
+        @if(auth()->guard('admin')->check())
         <div class="sidebar__menu-wrapper" id="sidebar__menuWrapper">
             <ul class="sidebar__menu">
                 <li class="sidebar-menu-item {{menuActive('admin.dashboard')}}">
@@ -341,6 +349,29 @@
                 <span class="text--success">@lang('V'){{systemDetails()['version']}} </span>
             </div>
         </div>
+        @elseif(auth()->guard('donor')->check())
+        <div class="sidebar__menu-wrapper" id="sidebar__menuWrapper">
+            <ul class="sidebar__menu">
+                <li class="sidebar-menu-item {{menuActive('donor.dashboard')}}">
+                    <a href="{{route('admin.dashboard')}}" class="nav-link ">
+                        <i class="menu-icon las la-home"></i>
+                        <span class="menu-title">@lang('Dashboard')</span>
+                    </a>
+                </li>
+                <li class="sidebar__menu-header">@lang('Requests')</li>
+                <li class="sidebar-menu-item {{menuActive('donor.dashboard')}}">
+                    <a href="#" class="nav-link ">
+                        <i class="menu-icon las la-syringe"></i>
+                        <span class="menu-title">@lang('Requests')</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="text-center mb-3 text-uppercase">
+                <span class="text--primary">{{__(systemDetails()['name'])}}</span>
+                {{-- <span class="text--success">@lang('V'){{systemDetails()['version']}} </span> --}}
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 <!-- sidebar end -->

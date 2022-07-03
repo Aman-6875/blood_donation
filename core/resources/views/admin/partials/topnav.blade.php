@@ -41,7 +41,7 @@
                     <span class="icon"><i class="las la-chevron-circle-down"></i></span>
                   </span>
                 </button>
-                {{-- <div class="dropdown-menu dropdown-menu--sm p-0 border-0 box--shadow1 dropdown-menu-right">
+                <div class="dropdown-menu dropdown-menu--sm p-0 border-0 box--shadow1 dropdown-menu-right">
                     <a href="{{ route('admin.profile') }}"
                        class="dropdown-menu__item d-flex align-items-center px-3 py-2">
                         <i class="dropdown-menu__icon las la-user-circle"></i>
@@ -59,7 +59,7 @@
                         <i class="dropdown-menu__icon las la-sign-out-alt"></i>
                         <span class="dropdown-menu__caption">@lang('Logout')</span>
                     </a>
-                </div> --}}
+                </div>
             </li>
             @elseif(auth()->guard('donor')->check())
             <li class="dropdown">

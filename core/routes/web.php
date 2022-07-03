@@ -33,7 +33,7 @@ Route::namespace('Donor')->prefix('donor')->name('donor.')->group(function () {
 
     Route::middleware(['donor'])->group(function () {
         Route::get('dashboard', 'DonorController@dashboard')->name('dashboard');
-        Route::get('profile', 'AdminController@profile')->name('profile');
+        Route::get('profile', 'DonorController@profile')->name('profile');
         Route::post('profile', 'AdminController@profileUpdate')->name('profile.update');
         Route::get('password', 'AdminController@password')->name('password');
         Route::post('password', 'AdminController@passwordUpdate')->name('password.update');
